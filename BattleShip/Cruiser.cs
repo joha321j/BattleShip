@@ -4,6 +4,6 @@ namespace BattleShip
 {
     internal class Cruiser: Ship,IHittable
     {
-        public Cruiser(int[] firstCoordinate, orientation orient) : base(ShipSize.CruiserSize.size, ShipSize.CruiserSize.width, firstCoordinate, orient) { }
+        public Cruiser(int[] firstCoordinate, Orientation orient) : base(ShipSize.CruiserSize.size, ShipSize.CruiserSize.width, firstCoordinate, orient) { }
     }
 }

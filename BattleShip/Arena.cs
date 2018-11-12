@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    class Arena
+    internal class Arena
     {
+        private char[,] _yourMap;
+        private char[,] _enemyMap;
 
-        private char[,] _yourMap = new char[9, 9];
-        private char[,] _enemyMap = new char[9, 9];
-        private int _arenaHealth = 0;
         private List<IHittable> _hittables = new List<IHittable>();
 
         internal void SaveAttack(int[] coordinate, bool hit)
@@ -26,17 +25,19 @@ namespace BattleShip
             }
         }
 
-        public int HitPoints { get { return _arenaHealth; } }
+        public int HitPoints { get; private set; } = 0;
 
         public string ArenaName { get; set; }
 
-        public Arena(string name)
+        public Arena(string name, int receivedArenaSize = 9)
         {
             ArenaName = name;
-
-            for (int i = 0; i < 9; i++)
+            int arenaSize = receivedArenaSize;
+            _yourMap = new char[arenaSize, arenaSize];
+            _enemyMap = new char[arenaSize, arenaSize];
+            for (int i = 0; i < arenaSize; i++)
             {
-                for (int k = 0; k < 9; k++)
+                for (int k = 0; k < arenaSize; k++)
                 {
                     _yourMap[i, k] = '.';
                     _enemyMap[i, k] = ',';
@@ -46,7 +47,7 @@ namespace BattleShip
         public void AddHittable(IHittable hittable)
         {
             _hittables.Add(hittable);
-            _arenaHealth += hittable.HitPoints;
+            HitPoints += hittable.HitPoints;
 
             for (int i = 0; i <= hittable.LastCoordinate[0] - hittable.FirstCoordinate[0]; i++)
             {
@@ -93,7 +94,7 @@ namespace BattleShip
                 didHit = hittable.HitCheck(hitCoordinate);
                 if (didHit)
                 {
-                    this._arenaHealth--;
+                    this.HitPoints--;
                     _yourMap[hitCoordinate[0] - 1, hitCoordinate[1] - 1] = 'D';
 
                     break;

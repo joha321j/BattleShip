@@ -8,6 +8,6 @@ namespace BattleShip
 {
     class BattleShip: Ship,IHittable
     {
-        public BattleShip(int[] firstCoordinate, orientation orient) : base(ShipSize.BattleShipSize.size, ShipSize.BattleShipSize.width, firstCoordinate, orient) { }
+        public BattleShip(int[] firstCoordinate, Orientation orient) : base(ShipSize.BattleShipSize.size, ShipSize.BattleShipSize.width, firstCoordinate, orient) { }
     }
 }

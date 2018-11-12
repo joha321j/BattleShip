@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    public enum orientation
+    public enum Orientation
     {
-        horizontal,
-        vertical,
+        Horizontal,
+        Vertical,
     }
-    enum shipType
+    enum ShipType
     {
         Carrier,
         Battleship,
@@ -21,22 +21,22 @@ namespace BattleShip
     }
     class ShipFactory
     {
-        public static IHittable CreateShip(shipType ship, int[] firstCoordinate, orientation orient)
+        public static IHittable CreateShip(ShipType ship, int[] firstCoordinate, Orientation orient)
         {
             switch (ship)
             {
-                case shipType.Carrier:
+                case ShipType.Carrier:
                     return new Carrier(firstCoordinate, orient);
-                case shipType.Battleship:
+                case ShipType.Battleship:
                     return new BattleShip(firstCoordinate, orient);
-                case shipType.Cruiser:
+                case ShipType.Cruiser:
                     return new Cruiser(firstCoordinate, orient);
-                case shipType.Submarine:
+                case ShipType.Submarine:
                     return new Submarine(firstCoordinate, orient);
-                case shipType.Destroyer:
+                case ShipType.Destroyer:
                     return new Destroyer(firstCoordinate, orient);
                 default:
-                    throw new System.ArgumentOutOfRangeException("shipType", "The given shiptype was not available.");
+                    throw new System.ArgumentOutOfRangeException("ShipType", "The given ship type was not available.");
             }
         }
     }

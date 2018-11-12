@@ -16,7 +16,7 @@ namespace BattleShip
         public int[] FirstCoordinate { get; private set; }
         public int[] LastCoordinate { get; private set; }
 
-        public Ship(int size, int width, int[] firstCoordinate, orientation orient)
+        public Ship(int size, int width, int[] firstCoordinate, Orientation orient)
         {
             int[] lastCoordinate = new int[2];
 
@@ -26,13 +26,13 @@ namespace BattleShip
             FirstCoordinate = firstCoordinate;
             switch (orient)
             {
-                case orientation.horizontal:
+                case Orientation.Horizontal:
 
                     lastCoordinate[0] = firstCoordinate[0] + size - 1;
                     lastCoordinate[1] = firstCoordinate[1] + width - 1;
                     break;
 
-                case orientation.vertical:
+                case Orientation.Vertical:
                     lastCoordinate[0] = firstCoordinate[0] + width - 1;
                     lastCoordinate[1] = firstCoordinate[1] + size - 1;
                     break;
